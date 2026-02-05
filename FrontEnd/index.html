@@ -12,6 +12,10 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
   </head>
   <body>
     <header>
@@ -20,7 +24,7 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li>login</li>
+          <li><a href="login.html">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -76,6 +80,70 @@
         </ul>
       </nav>
     </footer>
+    <aside id="modal" class="modal" style="display: none">
+      <div class="modal-wrapper">
+        <i
+          class="fa-solid fa-arrow-left return-modal"
+          style="display: none"
+        ></i>
+        <i class="fa-solid fa-xmark close-modal"></i>
+
+        <div id="modal-gallery-view">
+          <h3>Galerie photo</h3>
+          <div class="modal-gallery"></div>
+          <hr />
+          <input
+            type="submit"
+            value="Ajouter une photo"
+            class="btn-add-photo"
+          />
+        </div>
+
+        <div id="modal-add-view" style="display: none">
+          <h3>Ajout photo</h3>
+
+          <form id="add-photo-form">
+            <div class="add-photo-container">
+              <i class="fa-regular fa-image icon-image"></i>
+              <label for="photo-upload" class="btn-upload"
+                >+ Ajouter photo</label
+              >
+              <input
+                type="file"
+                id="photo-upload"
+                name="image"
+                accept="image/png, image/jpeg"
+                style="display: none"
+              />
+              <p>jpg, png : 4mo max</p>
+              <img
+                id="img-preview"
+                src="#"
+                alt="Aperçu"
+                style="display: none"
+              />
+            </div>
+
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" required />
+
+            <label for="category">Catégorie</label>
+            <select name="category" id="category">
+              <option value="">Choisissez une catégorie</option>
+            </select>
+
+            <hr />
+            <input
+              type="submit"
+              value="Valider"
+              id="btn-validate"
+              class="btn-validate"
+              disabled
+            />
+          </form>
+        </div>
+      </div>
+    </aside>
     <script src="./script.js"></script>
   </body>
 </html>

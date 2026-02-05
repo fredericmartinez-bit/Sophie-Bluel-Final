@@ -290,3 +290,218 @@ footer nav ul {
   background-color: #1d6154;
   color: white;
 }
+/* === PAGE LOGIN === */
+#login {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+#login h2 {
+  margin-bottom: 20px;
+}
+
+#login form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#login input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login label {
+  margin: 2em 0 1em 0;
+}
+
+#login a {
+  margin-top: 20px;
+  text-decoration: underline;
+  color: inherit;
+  font-size: 14px;
+}
+/* === LA MODALE === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Fond sombre transparent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-wrapper {
+  background-color: white;
+  width: 630px;
+  padding: 60px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-modal {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal h3 {
+  font-family: "Work Sans";
+  font-size: 26px;
+  color: black;
+  margin-bottom: 40px;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.modal-gallery img {
+  width: 100%;
+}
+
+.modal hr {
+  width: 100%;
+  border-top: 1px solid #b3b3b3;
+  margin-bottom: 40px;
+}
+
+.btn-add-photo {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  border: none;
+  padding: 10px 50px;
+  border-radius: 60px;
+  cursor: pointer;
+}
+/* === GALERIE MODALE (Les photos) === */
+.modal-figure {
+  position: relative; /* Pour pouvoir placer la poubelle par-dessus */
+}
+
+.modal-figure img {
+  width: 100%;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: black;
+  color: white;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+/* === FORMULAIRE AJOUT PHOTO === */
+.return-modal {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.add-photo-container {
+  background-color: #e8f1f6;
+  width: 100%;
+  height: 170px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b9c5cc;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-image {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.btn-upload {
+  background-color: #cbd6dc;
+  color: #306685;
+  font-weight: 500;
+  padding: 10px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.add-photo-container p {
+  font-size: 10px;
+  margin: 0;
+}
+
+#img-preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#add-photo-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#add-photo-form label {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+#add-photo-form input[type="text"],
+#add-photo-form select {
+  height: 50px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-size: 1.2rem;
+}
+
+.btn-validate {
+  background-color: #a7a7a7; /* Gris tant que c'est pas valide */
+  color: white;
+  font-family: "Syne";
+  font-weight: 700;
+  border: none;
+  padding: 10px 50px;
+  border-radius: 60px;
+  margin: 0 auto;
+  cursor: not-allowed;
+}
+
+.btn-validate.active {
+  background-color: #1d6154;
+  cursor: pointer;
+}
