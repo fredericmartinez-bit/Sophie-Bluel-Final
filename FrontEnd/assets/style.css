@@ -505,3 +505,28 @@ footer nav ul {
   background-color: #1d6154;
   cursor: pointer;
 }
+input,
+textarea {
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  border: none;
+}
+input {
+  height: 50px; /* Pour les champs Nom et Email */
+}
+
+textarea {
+  min-height: 150px; /* Pour le champ Message */
+}
+/* État par défaut (inactif) */
+.filter-btn {
+  background-color: white;
+  color: #1d6154;
+  border: 1px solid #1d6154;
+  /* ... reste de ton code ... */
+}
+
+/* État sélectionné (actif) */
+.filter-btn.active {
+  background-color: #1d6154;
+  color: white;
+}

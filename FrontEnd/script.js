@@ -8,6 +8,10 @@ async function getWorks() {
   allWorks = await response.json();
   displayWorks(allWorks);
 }
+function resetActiveBtn() {
+  const allBtns = document.querySelectorAll(".filter-btn");
+  allBtns.forEach((b) => b.classList.remove("active"));
+}
 
 // 2. Afficher les travaux dans la galerie
 function displayWorks(works) {
@@ -38,15 +42,19 @@ async function getCategories() {
 function displayCategories(categories) {
   const filtersContainer = document.querySelector(".filters");
 
+  // Bouton "Tous"
   const btnAll = document.createElement("button");
   btnAll.innerText = "Tous";
-  btnAll.classList.add("filter-btn");
+  btnAll.classList.add("filter-btn", "active"); // On ajoute 'active' par défaut
   filtersContainer.appendChild(btnAll);
 
   btnAll.addEventListener("click", () => {
+    resetActiveBtn(); // On retire le vert des autres boutons
+    btnAll.classList.add("active"); // On met le vert sur celui-ci
     displayWorks(allWorks);
   });
 
+  // Boutons par catégories
   categories.forEach((category) => {
     const btn = document.createElement("button");
     btn.innerText = category.name;
@@ -54,6 +62,8 @@ function displayCategories(categories) {
     filtersContainer.appendChild(btn);
 
     btn.addEventListener("click", () => {
+      resetActiveBtn(); // On retire le vert des autres boutons
+      btn.classList.add("active"); // On met le vert sur le bouton cliqué
       const filteredWorks = allWorks.filter(
         (work) => work.categoryId === category.id,
       );
