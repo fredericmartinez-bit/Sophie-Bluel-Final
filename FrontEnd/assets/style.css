@@ -268,15 +268,14 @@ footer nav ul {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin: 50px 0;
 }
 
 .filter-btn {
-  background-color: transparent;
-  color: #1d6154; /* Le vert Sophie Bluel */
+  background-color: white; /* Fond blanc par défaut */
+  color: #1d6154;
   border: 1px solid #1d6154;
-  border-radius: 60px; /* Pour faire l'arrondi */
+  border-radius: 60px;
   font-family: "Syne", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -285,6 +284,11 @@ footer nav ul {
   transition: all 0.3s;
 }
 
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: #1d6154;
+  color: white;
+}
 /* Effet quand on passe la souris dessus */
 .filter-btn:hover {
   background-color: #1d6154;
@@ -341,12 +345,21 @@ footer nav ul {
 .modal-wrapper {
   background-color: white;
   width: 630px;
-  padding: 60px;
+  max-width: 100%;
+  padding: 60px 30px; /* On réduit ici pour que la grille et le bouton respirent */
   border-radius: 10px;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* C'est cette ligne qui centre tout le contenu ! */
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Pour le titre "Ajout photo" spécifiquement */
+.modal h3 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .close-modal {
@@ -388,9 +401,23 @@ footer nav ul {
   color: white;
   background-color: #1d6154;
   border: none;
-  padding: 10px 50px;
   border-radius: 60px;
   cursor: pointer;
+
+  /* === CENTRAGE DU BOUTON DANS LA MODALE === */
+  display: flex; /* On passe en flex pour aligner le texte */
+  margin: 0 auto; /* Centre le bouton horizontalement */
+
+  /* === CENTRAGE DU TEXTE DANS LE BOUTON === */
+  justify-content: center; /* Centre le texte horizontalement */
+  align-items: center; /* Centre le texte verticalement */
+  text-align: center; /* Sécurité pour le centrage du texte */
+
+  /* === TAILLE ET RESPIRATION === */
+  width: fit-content; /* Le bouton s'ajuste au texte */
+  min-width: 240px; /* Largeur minimum pour ressembler à la maquette */
+  padding: 10px 20px; /* Espace autour du texte */
+  white-space: nowrap; /* Empêche le texte de se couper */
 }
 /* === GALERIE MODALE (Les photos) === */
 .modal-figure {
@@ -403,80 +430,42 @@ footer nav ul {
 
 .delete-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 6px;
+  right: 6px;
   background-color: black;
   color: white;
   width: 17px;
   height: 17px;
-  display: flex;
-  align-items: center;
+  border-radius: 2px;
+  cursor: pointer;
+
+  /* Centrage parfait du contenu */
+  display: flex !important;
   justify-content: center;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 10px;
-}
-
-/* === FORMULAIRE AJOUT PHOTO === */
-.return-modal {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.add-photo-container {
-  background-color: #e8f1f6;
-  width: 100%;
-  height: 170px;
-  border-radius: 3px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: #b9c5cc;
-  position: relative;
-  overflow: hidden;
-}
-
-.icon-image {
-  font-size: 60px;
-  margin-bottom: 10px;
-}
-
-.btn-upload {
-  background-color: #cbd6dc;
-  color: #306685;
-  font-weight: 500;
-  padding: 10px 30px;
-  border-radius: 50px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.add-photo-container p {
-  font-size: 10px;
+  padding: 0;
   margin: 0;
 }
 
-#img-preview {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+/* On règle l'icône i séparément pour qu'elle ne bouge pas le carré */
+.delete-icon i {
+  font-size: 9px;
+  transform: translateY(-1px); /* On met -1px pour remonter la poubelle */
+} /* <--- C'est ICI qu'il faut mettre une ACCOLADE seule, sans parenthèse ni point-virgule */
 
+/* === FORMULAIRE AJOUT PHOTO (Centrage & Largeur) === */
 #add-photo-form {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 420px; /* Largeur exacte de la maquette */
+  margin: 0 auto; /* Centre le formulaire horizontalement */
 }
 
 #add-photo-form label {
   margin-bottom: 10px;
   font-weight: 500;
+  text-align: left; /* Aligne les labels à gauche du formulaire */
 }
 
 #add-photo-form input[type="text"],
@@ -484,21 +473,24 @@ footer nav ul {
   height: 50px;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Espace entre les champs */
   padding-left: 10px;
   font-size: 1.2rem;
 }
 
+/* === LE BOUTON VALIDER === */
 .btn-validate {
-  background-color: #a7a7a7; /* Gris tant que c'est pas valide */
+  background-color: #a7a7a7;
   color: white;
   font-family: "Syne";
   font-weight: 700;
   border: none;
-  padding: 10px 50px;
+  padding: 10px 80px; /* Plus large comme sur le modèle */
   border-radius: 60px;
-  margin: 0 auto;
+  display: block; /* Permet le centrage avec margin auto */
+  margin: 20px auto 45px auto; /* Espace équilibré en haut et en bas */
   cursor: not-allowed;
+  width: fit-content; /* S'adapte à la taille du texte */
 }
 
 .btn-validate.active {
