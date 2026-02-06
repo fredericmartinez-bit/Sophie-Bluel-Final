@@ -127,13 +127,28 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/** end reset css**/
+/* === CORPS DE PAGE (BODY) === */
 body {
+  /* Tes réglages de base (Police, taille, centrage) */
   max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  background-color: #fffef8;
+
+  /* Les réglages pour le Footer en bas (Flexbox) */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+/* === LE CONTENU PRINCIPAL (MAIN) === */
+/* Ce bloc pousse le footer vers le bas */
+main {
+  flex: 1; /* C'est ça qui pousse le footer en bas */
+}
+
+/* === L'EN-TÊTE (HEADER) === */
 header {
   display: flex;
   justify-content: space-between;
@@ -215,7 +230,7 @@ li:hover {
 .gallery img {
   width: 100%;
 }
-#contact {
+ct {
   width: 50%;
   margin: auto;
 }
@@ -294,40 +309,78 @@ footer nav ul {
   background-color: #1d6154;
   color: white;
 }
-/* === PAGE LOGIN === */
+/* === PAGE LOGIN (IDENTIQUE MAQUETTE) === */
 #login {
-  width: 50%;
-  margin: auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 379px; /* La largeur exacte pour être compact et élégant */
+  margin: 60px auto; /* Un peu plus d'espace en haut */
 }
 
+/* Le titre "Log In" */
 #login h2 {
-  margin-bottom: 20px;
+  font-family: "Syne";
+  font-weight: 800; /* Bien gras */
+  font-size: 30px;
+  color: #1d6154;
+  margin-bottom: 35px; /* Espace sous le titre */
 }
 
+/* Le formulaire */
 #login form {
+  width: 100%;
   text-align: left;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
 
-#login input {
-  height: 50px;
-  font-size: 1.2em;
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
+/* Les labels (E-mail, Mot de passe) */
 #login label {
-  margin: 2em 0 1em 0;
+  align-self: flex-start;
+  margin-bottom: 8px;
+  font-family: "Work Sans";
+  font-weight: 500;
+  color: #3d3d3d;
 }
 
+/* Les champs de saisie */
+#login input:not([type="submit"]) {
+  height: 50px;
+  font-size: 1.2rem;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09); /* Ombre douce */
+  margin-bottom: 30px;
+  padding-left: 20px;
+  outline: none;
+}
+
+/* Le bouton "Se connecter" */
+#login input[type="submit"] {
+  background-color: #1d6154;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  padding: 10px 38px;
+  cursor: pointer;
+  width: auto;
+  min-width: 180px; /* Taille minimum du bouton */
+  margin: 10px auto 25px auto; /* Centré avec espacement */
+  box-shadow: none;
+}
+
+/* Le lien "Mot de passe oublié" */
 #login a {
-  margin-top: 20px;
+  color: black;
   text-decoration: underline;
-  color: inherit;
+  font-family: "Work Sans";
   font-size: 14px;
+  font-weight: 500;
+  text-align: center; /* Centré sous le bouton */
+  margin: 0;
 }
 /* === LA MODALE === */
 .modal {
@@ -368,6 +421,58 @@ footer nav ul {
   right: 30px;
   font-size: 24px;
   cursor: pointer;
+}
+/* === ZONE BLEUE DE TÉLÉCHARGEMENT === */
+.add-photo-container {
+  background-color: #e8f1f6;
+  width: 100%;
+  height: 170px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* === IMAGE DE PRÉVISUALISATION === */
+#img-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* L'image remplit la zone sans se déformer */
+  border-radius: 3px;
+  display: none; /* Cachée par défaut (géré par le JS) */
+}
+
+/* Taille et couleur de l'icône montagne */
+.add-photo-container i {
+  font-size: 60px;
+  color: #b9c5cc;
+  margin-bottom: 10px;
+}
+
+/* Le bouton "+ Ajouter photo" bleu clair */
+.add-photo-container label {
+  background-color: #cbd6dc;
+  color: #306685;
+  padding: 10px 33px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 0; /* On annule le margin-top pour ce label spécifique */
+}
+
+/* Texte sous le bouton (jpg, png : 4mo max) */
+.add-photo-container p {
+  font-size: 10px;
+  color: #444444;
+  margin-top: 7px;
+}
+
+/* === FORMULAIRE ET LABELS === */
+#add-photo-form label {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-family: "Work Sans";
+  margin-top: 15px;
 }
 
 .modal h3 {
@@ -477,24 +582,31 @@ footer nav ul {
   padding-left: 10px;
   font-size: 1.2rem;
 }
-
-/* === LE BOUTON VALIDER === */
-.btn-validate {
-  background-color: #a7a7a7;
+/* === LE BOUTON VALIDER (CODE FINAL) === */
+.modal .btn-validate,
+#add-photo-form .btn-validate {
+  background-color: #a7a7a7 !important; /* Gris forcé */
   color: white;
   font-family: "Syne";
   font-weight: 700;
   border: none;
-  padding: 10px 80px; /* Plus large comme sur le modèle */
   border-radius: 60px;
-  display: block; /* Permet le centrage avec margin auto */
-  margin: 20px auto 45px auto; /* Espace équilibré en haut et en bas */
+
+  width: 237px;
+  height: 36px;
+
+  display: flex !important;
+  margin: 30px auto !important;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
   cursor: not-allowed;
-  width: fit-content; /* S'adapte à la taille du texte */
 }
 
 .btn-validate.active {
-  background-color: #1d6154;
+  background-color: #1d6154 !important;
   cursor: pointer;
 }
 input,
@@ -521,4 +633,48 @@ textarea {
 .filter-btn.active {
   background-color: #1d6154;
   color: white;
+}
+/* === SECTION CONTACT (Mise en forme maquette) === */
+#contact {
+  width: 50%; /* On réduit la largeur à 50% de la page */
+  margin: 60px auto; /* On centre le bloc au milieu */
+  text-align: center; /* On centre les titres */
+}
+
+/* Alignement du formulaire */
+#contact form {
+  text-align: left; /* Les labels et champs restent alignés à gauche */
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Espacement des champs */
+#contact input,
+#contact textarea {
+  margin-bottom: 20px;
+  width: 100%; /* Remplit le bloc de 50% */
+  box-sizing: border-box; /* Pour que les marges ne cassent pas la largeur */
+}
+
+/* Hauteur spécifique pour le message */
+#contact textarea {
+  height: 200px;
+}
+/* === LE BOUTON ENVOYER (Style maquette) === */
+#contact input[type="submit"] {
+  width: auto; /* Il ne prend que la place nécessaire (pas 100%) */
+  margin: 30px auto 0 auto; /* Centré horizontalement avec de l'espace au-dessus */
+  display: block; /* Nécessaire pour que le margin auto fonctionne ici */
+
+  /* Style visuel (au cas où il ne l'aurait pas déjà) */
+  background-color: #1d6154;
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  padding: 10px 38px;
+  cursor: pointer;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }

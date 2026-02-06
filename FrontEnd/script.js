@@ -220,20 +220,25 @@ if (token) {
   // 9. VÉRIFIER QUE TOUT EST REMPLI (Pour activer le bouton)
   const titleInput = document.querySelector("#title");
   const categorySelect = document.querySelector("#category");
-  const btnValidate = document.querySelector("#btn-validate");
+  // IMPORTANT : On sélectionne par la CLASSE .btn-validate pour correspondre au CSS
+  const btnValidate = document.querySelector(".btn-validate");
 
   function checkForm() {
-    // Si on a une image ET un titre ET une catégorie
+    // Condition : Si image sélectionnée + Titre rempli + Catégorie choisie
     if (
       fileInput.files[0] &&
       titleInput.value !== "" &&
       categorySelect.value !== ""
     ) {
-      btnValidate.removeAttribute("disabled"); // On active le bouton
-      btnValidate.classList.add("active"); // On le met en vert
+      // ALORS : On active le bouton (devient VERT)
+      btnValidate.removeAttribute("disabled");
+      btnValidate.classList.add("active");
+      btnValidate.style.cursor = "pointer";
     } else {
-      btnValidate.setAttribute("disabled", "true"); // On désactive
-      btnValidate.classList.remove("active"); // On le remet en gris
+      // SINON : On désactive le bouton (reste GRIS)
+      btnValidate.setAttribute("disabled", "true");
+      btnValidate.classList.remove("active");
+      btnValidate.style.cursor = "not-allowed";
     }
   }
 
