@@ -678,3 +678,8 @@ textarea {
   cursor: pointer;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+/* === FOND GÉNÉRAL (Pour remplir tout l'écran) === */
+html {
+  background-color: #fffef8; /* Le beige partout, pas de gris ! */
+  height: 100%;
+}
