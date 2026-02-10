@@ -129,14 +129,12 @@ table {
 }
 /* === CORPS DE PAGE (BODY) === */
 body {
-  /* Tes réglages de base (Police, taille, centrage) */
-  max-width: 1140px;
-  margin: auto;
+  margin: 0;
+  padding: 0;
   font-family: "Work Sans";
   font-size: 14px;
   background-color: #fffef8;
 
-  /* Les réglages pour le Footer en bas (Flexbox) */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -150,9 +148,19 @@ main {
 
 /* === L'EN-TÊTE (HEADER) === */
 header {
+  width: 100%;
+  max-width: 1140px; /* On remet la limite ici */
+  margin: 50px auto; /* On centre ici */
   display: flex;
   justify-content: space-between;
-  margin: 50px 0;
+}
+
+/* === LE CONTENU (MAIN) === */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1140px; /* On remet la limite ici */
+  margin: 0 auto; /* On centre ici */
 }
 section {
   margin: 50px 0;
@@ -397,7 +405,7 @@ footer nav ul {
 
 .modal-wrapper {
   background-color: white;
-  width: 630px;
+  width: 800px;
   max-width: 100%;
   padding: 60px 30px; /* On réduit ici pour que la grille et le bouton respirent */
   border-radius: 10px;
@@ -422,49 +430,63 @@ footer nav ul {
   font-size: 24px;
   cursor: pointer;
 }
-/* === ZONE BLEUE DE TÉLÉCHARGEMENT === */
+/* === LA FLÈCHE DE RETOUR (En haut à gauche) === */
+.fa-arrow-left {
+  position: absolute; /* On la sort du flux pour la placer précisément */
+  top: 30px; /* Même hauteur que la croix de fermeture */
+  left: 30px; /* Collée à gauche */
+  font-size: 24px; /* Même taille que la croix */
+  cursor: pointer; /* Petite main au survol */
+  color: black;
+}
+/* === ZONE BLEUE (Centrage réparé) === */
 .add-photo-container {
   background-color: #e8f1f6;
   width: 100%;
-  height: 170px;
+  height: 169px;
   border-radius: 3px;
   margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-/* === IMAGE DE PRÉVISUALISATION === */
-#img-preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* L'image remplit la zone sans se déformer */
-  border-radius: 3px;
-  display: none; /* Cachée par défaut (géré par le JS) */
+
+  /* 👇 C'EST ICI QUE LA MAGIE OPÈRE 👇 */
+  display: flex; /* Active le mode Flexbox */
+  flex-direction: column; /* Met la montagne au-dessus du bouton */
+  align-items: center; /* Centre tout horizontalement (Gauche <-> Droite) */
+  justify-content: center; /* Centre tout verticalement (Haut <-> Bas) */
+
+  gap: 10px; /* Espace propre entre la montagne et le bouton */
 }
 
-/* Taille et couleur de l'icône montagne */
+/* L'icône Montagne */
 .add-photo-container i {
-  font-size: 60px;
+  font-size: 75px;
   color: #b9c5cc;
-  margin-bottom: 10px;
+  margin: 0; /* Pas de marge, le gap s'en occupe */
 }
 
-/* Le bouton "+ Ajouter photo" bleu clair */
+/* Le bouton "+ Ajouter photo" (Correction Finale) */
 .add-photo-container label {
   background-color: #cbd6dc;
   color: #306685;
+  font-family: "Work Sans";
+  font-weight: 500;
+
   padding: 10px 33px;
   border-radius: 50px;
   cursor: pointer;
-  margin-top: 0; /* On annule le margin-top pour ce label spécifique */
+  margin: 0;
+  display: inline-block;
+  font-size: 14px;
+
+  /* 👇 C'EST LA LIGNE QUI DÉBLOQUE TOUT ! */
+  align-self: center !important;
+  /* 👆 Elle force le bouton à se centrer malgré la règle "Titre/Catégorie" */
 }
 
-/* Texte sous le bouton (jpg, png : 4mo max) */
+/* Le petit texte en dessous */
 .add-photo-container p {
   font-size: 10px;
   color: #444444;
-  margin-top: 7px;
+  margin: 0; /* Pas de marge */
 }
 
 /* === FORMULAIRE ET LABELS === */
@@ -558,29 +580,34 @@ footer nav ul {
   transform: translateY(-1px); /* On met -1px pour remonter la poubelle */
 } /* <--- C'est ICI qu'il faut mettre une ACCOLADE seule, sans parenthèse ni point-virgule */
 
-/* === FORMULAIRE AJOUT PHOTO (Centrage & Largeur) === */
+/* === FORMULAIRE (Largeur fixée à 420px) === */
 #add-photo-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 420px; /* Largeur exacte de la maquette */
-  margin: 0 auto; /* Centre le formulaire horizontalement */
+
+  width: 420px; /* C'est ICI qu'on fixe la largeur maquette */
+
+  margin: 0 auto; /* Centre le formulaire dans la modale */
+  text-align: left;
 }
 
 #add-photo-form label {
   margin-bottom: 10px;
   font-weight: 500;
-  text-align: left; /* Aligne les labels à gauche du formulaire */
+  text-align: left;
 }
 
-#add-photo-form input[type="text"],
+/* === CORRECTION DES CHAMPS (Version universelle) === */
+#add-photo-form input,
 #add-photo-form select {
+  width: 100%;
   height: 50px;
+  background-color: white;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  margin-bottom: 30px; /* Espace entre les champs */
-  padding-left: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 30px; /* C'est cet espace qui crée l'écart maquette */
+  padding-left: 20px;
+  box-sizing: border-box;
 }
 /* === LE BOUTON VALIDER (CODE FINAL) === */
 .modal .btn-validate,
@@ -606,8 +633,10 @@ footer nav ul {
 }
 
 .btn-validate.active {
-  background-color: #1d6154 !important;
+  background-color: #1d6154 !important; /* Le vert sombre de la maquette */
+  color: white !important;
   cursor: pointer;
+  border: none;
 }
 input,
 textarea {
@@ -678,8 +707,141 @@ textarea {
   cursor: pointer;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-/* === FOND GÉNÉRAL (Pour remplir tout l'écran) === */
-html {
-  background-color: #fffef8; /* Le beige partout, pas de gris ! */
-  height: 100%;
+/* === PIED DE PAGE (Comme sur la maquette Figma) === */
+footer {
+  background-color: #ffffff; /* Fond BLANC (et pas beige) */
+  height: 60px; /* Hauteur exacte de la maquette */
+
+  /* Pour bien aligner le texte "Mentions légales" */
+  display: flex;
+  justify-content: flex-end; /* Pousse le texte à droite */
+  align-items: center; /* Centre le texte en hauteur */
+  padding-right: 20px; /* Petite marge pour ne pas coller au bord */
+}
+/* === STYLE SPÉCIAL POUR LA LISTE DÉROULANTE (Avec flèche) === */
+#add-photo-form select {
+  /* 1. Reset du style navigateur */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* 2. La flèche (Triangle Noir) */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+  background-size: 20px;
+
+  /* 3. Dimensions et style identique à l'input */
+  background-color: white;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  width: 100%;
+  height: 50px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  font-family: "Work Sans";
+  cursor: pointer;
+  box-sizing: border-box;
+}
+/* ================================================== */
+/* === FORCE LE CENTRAGE (À PLACER À LA TOUTE FIN) === */
+/* ================================================== */
+
+.add-photo-container {
+  /* On force les dimensions */
+  width: 100% !important;
+  height: 169px !important;
+  background-color: #e8f1f6 !important;
+
+  /* On force le centrage Flexbox */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* Centre horizontalement */
+  justify-content: center !important; /* Centre verticalement */
+  gap: 10px !important;
+}
+
+/* On force la suppression des marges qui gênent */
+.add-photo-container i,
+.add-photo-container label,
+.add-photo-container p {
+  margin: 0 !important;
+}
+
+/* Correction taille bouton */
+.add-photo-container label {
+  padding: 10px 33px !important;
+}
+/* === AJUSTEMENT APERÇU PHOTO (MAQUETTE) === */
+#img-preview {
+  display: none; /* Caché par défaut, le JS l'affichera */
+  height: 100%; /* Prend toute la hauteur du cadre bleu */
+  width: auto; /* Garde ses proportions */
+  max-width: 100%; /* Ne dépasse pas la largeur du cadre */
+  object-fit: cover; /* Remplit joliment l'espace */
+}
+
+/* On s'assure que le container bleu ne bloque pas l'image */
+.add-photo-container {
+  padding: 0 !important; /* Permet à l'image de toucher les bords haut/bas */
+  overflow: hidden; /* Coupe l'image si elle dépasse du cadre arrondi */
+}
+/* ======================================================= */
+/* === FINITIONS MODALE (Typographie + Image + Bouton) === */
+/* ======================================================= */
+
+/* 1. L'ÉCRITURE (Fontes) */
+.modal h3,
+.btn-validate,
+.btn-add-photo {
+  font-family: "Syne", sans-serif !important; /* Titres et Boutons en Syne */
+}
+
+#add-photo-form label,
+#add-photo-form input,
+#add-photo-form select,
+.add-photo-container p {
+  font-family: "Work Sans", sans-serif !important; /* Textes en Work Sans */
+}
+
+/* 2. L'IMAGE (Doit remplir le cadre bleu) */
+#img-preview {
+  width: auto;
+  height: 100%; /* Prend toute la hauteur */
+  object-fit: cover; /* Remplit sans déformer */
+  display: none; /* Caché tant qu'il n'y a pas de photo */
+}
+
+.add-photo-container {
+  overflow: hidden; /* Coupe ce qui dépasse des bords arrondis */
+  padding: 0 !important; /* Enlève les marges internes pour coller aux bords */
+}
+
+/* 3. LE BOUTON VALIDER (Vert foncé quand actif) */
+.btn-validate.active {
+  background-color: #1d6154 !important;
+  color: white !important;
+  cursor: pointer;
+}
+/* ======================================================= */
+/* === FINITIONS : TYPOGRAPHIE (Écriture Maquette) === */
+/* ======================================================= */
+
+/* Titres et Boutons -> Police "Syne" (Le style chic) */
+.modal h3,
+.btn-validate,
+.btn-add-photo,
+input[type="submit"] {
+  font-family: "Syne", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* Textes normaux -> Police "Work Sans" (Lisible) */
+body,
+#add-photo-form label,
+#add-photo-form input,
+#add-photo-form select,
+.add-photo-container p {
+  font-family: "Work Sans", sans-serif !important;
 }

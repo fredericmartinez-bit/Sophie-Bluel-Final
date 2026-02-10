@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <title>Sophie Bluel - Architecte d'intérieur</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-      rel="stylesheet"
-    />
     <meta name="description" content="" />
+
     <link rel="stylesheet" href="./assets/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -29,6 +32,7 @@
         </ul>
       </nav>
     </header>
+
     <main>
       <section id="introduction">
         <figure>
@@ -53,11 +57,13 @@
           </p>
         </article>
       </section>
+
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <div class="filters"></div>
         <div class="gallery"></div>
       </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
@@ -80,6 +86,7 @@
         </ul>
       </nav>
     </footer>
+
     <aside id="modal" class="modal" style="display: none">
       <div class="modal-wrapper">
         <i
@@ -129,14 +136,13 @@
 
             <label for="category">Catégorie</label>
             <select name="category" id="category">
-              <option value="">Choisissez une catégorie</option>
+              <option value=""></option>
             </select>
 
             <hr />
             <input
               type="submit"
               value="Valider"
-              id="btn-validate"
               class="btn-validate"
               disabled
             />
@@ -144,6 +150,7 @@
         </div>
       </div>
     </aside>
+
     <script src="./script.js"></script>
   </body>
 </html>
